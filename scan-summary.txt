@@ -1,0 +1,26 @@
+# Vulnerability Scan Report – Localhost (127.0.0.1)
+
+## Findings
+
+### 1. SSL/TLS: Report Weak Cipher Suites
+- Severity: Medium (5.9)
+- Port: 5432/tcp
+- Risk: Service supports weak ciphers, vulnerable to downgrade attacks.
+- Fix: Enforce TLS 1.2+ and disable weak cipher suites.
+
+### 2. Weak MAC Algorithm(s) Supported (SSH)
+- Severity: Low (2.6)
+- Port: 22/tcp
+- Risk: Weak message authentication codes reduce integrity protection.
+- Fix: Edit `/etc/ssh/sshd_config` to allow only `hmac-sha2-256` or stronger.
+
+### 3. SSL/TLS: Self-Signed Certificate Detected
+- Severity: Informational
+- Port: 5432/tcp
+- Risk: Not trusted by clients, could allow MITM.
+- Fix: Replace with trusted CA certificate.
+
+### 4. Service Enumeration
+- Ports: 22/tcp (SSH), 5432/tcp (PostgreSQL)
+- Risk: Provides attackers with reconnaissance info.
+- Fix: Restrict access to trusted IPs and keep services patched.
